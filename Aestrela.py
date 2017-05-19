@@ -50,5 +50,5 @@ def aStar(objetivo, mapa, start): #recebe um objetivo do tipo Node
 obj = Node(lin=1,col=10)
 start = Node(lin=0, col=0)
 
-#imprimeCaminhoBonito(aStar(obj, m, start), m)
+imprimeCaminhoBonito(aStar(obj, m, start), m)
 

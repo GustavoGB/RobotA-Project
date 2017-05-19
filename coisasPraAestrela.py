@@ -22,8 +22,7 @@ class Node(object):
 			return True
 		return False
 		
-	def __cmp__(self, other):
-		return cmp(self.custo, other.custo)
+
 
 
 
