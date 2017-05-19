@@ -115,3 +115,28 @@ def hMan(node, objetivo):
 	deltax = abs(objetivo.col - node.col)
 	deltay = abs(objetivo.lin - node.lin)
 	return deltay+deltax
+
+def binarySearch(alist, item_custo):
+
+    first = 0
+    last = len(alist)-1
+    found = False
+    midpoint = 0
+
+
+    while first<=last and not found:
+        midpoint = (first + last)//2
+        if alist[midpoint].custo == item_custo:
+        	found = True
+        else:
+            if item_custo < alist[midpoint].custo:
+                last = midpoint-1
+            else:
+                first = midpoint+1
+
+    return midpoint
+
+def insere(lista, item):
+	i = binarySearch(lista, item.custo)
+	lista.insert(i, item)
+	return lista
