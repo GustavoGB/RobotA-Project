@@ -36,7 +36,8 @@ def aStar(objetivo, mapa, start): #recebe um objetivo do tipo Node
 				#borda.append(filho)
 				borda = insere(borda, filho)
 			else:
-				for i in range(len(borda)):
+				imaior = binarySearch(borda, custoFilho)
+				for i in range(imaior, len(borda)):
 					if borda[i].custo>custoFilho and borda[i].col == filho.col and borda[i].lin == filho.lin:
 						borda.pop(i)
 						#borda.append(filho)
@@ -49,5 +50,5 @@ def aStar(objetivo, mapa, start): #recebe um objetivo do tipo Node
 obj = Node(lin=1,col=10)
 start = Node(lin=0, col=0)
 
-imprimeCaminhoBonito(aStar(obj, m, start), m)
+#imprimeCaminhoBonito(aStar(obj, m, start), m)
 
