@@ -23,7 +23,7 @@ def aStar(objetivo, mapa, start): #recebe um objetivo do tipo Node
 		#print(explorado)
 		node = borda.pop(0)
 		if (node.col == objetivo.col) and (node.lin == objetivo.lin):
-			return node
+			return node, borda, explorado
 		explorado.append(node)
 		filhos = pegaFilhos(node, mapa)
 		#print(filhos)
