@@ -1,5 +1,12 @@
-# projeto3
-Repositório do projeto 3 da disciplina Robótica Computacional da Engenharia Insper.
+# Projeto 3 - Navegação pelo quarto andar
+#### Eduarto Tirta, Gustavo Gobetti, Guilherme Graicer, Martim José
 
+### Objetivos
 
-ggg
+### Motivações
+
+### Ferramentas
+
+### Procedimentos
+
+### Resultados
