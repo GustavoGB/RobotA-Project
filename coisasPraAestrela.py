@@ -2,18 +2,19 @@ from math import *
 
 class Node(object):
 
-	def __init__(self, estado="aberto", pai=None, custo=1, lin=0, col=0):
+	def __init__(self, estado="aberto", pai=None, custo=0, tamanho=1, lin=0, col=0):
 		self.pai = pai
 		self.custo = custo
+		self.tamanho = tamanho
 		self.col = col
 		self.lin = lin
 		self.estado = estado
 
 	def __str__(self):
-		return "[ linha: %d coluna: %d ]" %(self.lin, self.col)
+		return "[ linha: %d coluna: %d custo: %f tamanho: %f]" %(self.lin, self.col, self.custo, self.tamanho)
 
 	def __repr__(self):
-		return "[ linha: %d coluna: %d ]" %(self.lin, self.col)
+		return "[ linha: %d coluna: %d custo: %f tamanho: %f]" %(self.lin, self.col, self.custo, self.tamanho)
 
 	def __eq__(self, node):
 		if node == None:
@@ -40,6 +41,7 @@ def pegaFilhos(node, map):
 	#print("lin = "+str(lin))
 	#print("col1 = "+str(col1))
 	#print("len ="+str(len(map[0])))
+	diag = sqrt(2)
 
 	if lin1<len(map) and map[lin1][col] == 0: #baixo
 		#print("1")
@@ -47,7 +49,7 @@ def pegaFilhos(node, map):
 
 	if lin1<len(map) and colm1>=0 and map[lin1][colm1] == 0: #esquerda-baixo
 		#print("2")
-		filhos.append(Node(lin=lin1, col=colm1, pai=node))
+		filhos.append(Node(lin=lin1, col=colm1, pai=node, tamanho=diag))
 
 	if colm1>=0 and map[lin][colm1] == 0: #esquerda
 		#print("3")
@@ -55,7 +57,7 @@ def pegaFilhos(node, map):
 
 	if linm1>=0 and colm1>=0 and map[linm1][colm1] == 0: #esquerda-cima
 		#print("4")
-		filhos.append(Node(lin=linm1, col=colm1, pai=node))
+		filhos.append(Node(lin=linm1, col=colm1, pai=node, tamanho=diag))
 
 	if linm1 >=0 and map[linm1][col]==0: #cima
 		#print("5")
@@ -63,7 +65,7 @@ def pegaFilhos(node, map):
 
 	if linm1 >= 0 and col1<len(map[0]) and map[linm1][col1]==0: #direita-cima
 		#print("6")
-		filhos.append(Node(lin=linm1, col=col1, pai=node))
+		filhos.append(Node(lin=linm1, col=col1, pai=node, tamanho=diag))
 
 	if (col1<len(map[0])) and (map[lin][col1]==0): #direita
 		#print("7")
@@ -71,7 +73,7 @@ def pegaFilhos(node, map):
 
 	if lin1<len(map) and col1<len(map[0]) and map[lin1][col1]==0:#direita-baixo
 		#print("8")
-		filhos.append(Node(lin=lin1, col=col1, pai=node))
+		filhos.append(Node(lin=lin1, col=col1, pai=node, tamanho=diag))
 
 	return filhos
 
@@ -81,14 +83,16 @@ def imprimeCaminho(node):
 		print(node)
 		node = node.pai
 
-def imprimeCaminhoBonito(node, mapa):
+def imprimeCaminhoBonito(node, mapa, obj):
 
 	for i in range(len(mapa)):
 		for j in range(len(mapa[i])):
-			if mapa[i][j] == "0":
+			if mapa[i][j] == 0:
 				mapa[i][j] = " "
 			else:
 				mapa[i][j] = "#"
+
+	mapa[obj.lin][obj.col] = 'G'
 
 
 	i = 0
