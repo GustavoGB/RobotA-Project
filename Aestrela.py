@@ -21,8 +21,7 @@ def aStar(objetivo, mapa, start):
 	explorado = [] #lista onde vao ficar as posicoes ja exploradas (e com seus 'filhos' na borda)
 
 	while (borda): #roda enquanto ha um elemento na borda
-		#print(borda)
-		#print("")
+		
 		node = borda.pop(0) # pega a posicao de menor custo
 
 		if (node.col == objetivo.col) and (node.lin == objetivo.lin): #acaba a funcao se a posicao eh o objetivo
@@ -40,10 +39,13 @@ def aStar(objetivo, mapa, start):
 			if filho not in borda and filho not in explorado: 
 				#borda.append(filho)
 				borda = insere(borda, filho) # insere o filho em sua posicao correta usando uma busca binaria
+				#print(borda)
+				#print("")
 			else: 
 				#se o filho ja esta na borda ou ja foi explorado
 
 				imaior = binarySearch(borda, custoFilho)
+
 				for i in range(imaior, len(borda)): #percorre a borda, se ha um caminho la que passa por esse filho, porem com custo maior, substitui por esse novo
 					
 					if borda[i].custo>custoFilho and borda[i].col == filho.col and borda[i].lin == filho.lin:
@@ -51,15 +53,15 @@ def aStar(objetivo, mapa, start):
 						#borda.append(filho)
 						borda = insere(borda, filho) # insere o filho em sua posicao correta usando uma busca binaria
 
-			borda = sorted(borda, key=lambda lin:lin.custo)
+			#borda = sorted(borda, key=lambda lin:lin.custo)
 
 				
 
-obj = Node(lin=1,col=10)
-start = Node(lin=0, col=0)
+#obj = Node(lin=1,col=10)
+#start = Node(lin=0, col=0)
 
-result, bleh, blah = aStar(obj, m, start)
+#result, bleh, blah = aStar(obj, m, start)
 
-imprimeCaminhoBonito(start, m, obj)
-imprimeCaminhoBonito(result, m, obj)
+#imprimeCaminhoBonito(start, m, obj)
+#imprimeCaminhoBonito(result, m, obj)
 

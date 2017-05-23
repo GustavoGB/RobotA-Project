@@ -36,11 +36,6 @@ def pegaFilhos(node, map):
 	col1 = node.col + 1
 	colm1 = node.col - 1
 
-
-	#print(map[lin][col1])
-	#print("lin = "+str(lin))
-	#print("col1 = "+str(col1))
-	#print("len ="+str(len(map[0])))
 	diag = sqrt(2)
 
 	if lin1<len(map) and map[lin1][col] == 0: #baixo
@@ -108,13 +103,13 @@ def imprimeCaminhoBonito(node, mapa, obj):
 	print("PASSOS: "+str(i))
 
 
-def hLR(node, objetivo):
+def hLR(node, objetivo): #heuristica euclidiana
 	deltax = abs(objetivo.col - node.col)
 	deltay = abs(objetivo.lin - node.lin)
 	h2 = deltax**2 + deltay**2
 	return sqrt(h2)
 
-def hMan(node, objetivo):
+def hMan(node, objetivo): #heuristica de Manhattan
 	deltax = abs(objetivo.col - node.col)
 	deltay = abs(objetivo.lin - node.lin)
 	return deltay+deltax
@@ -140,6 +135,24 @@ def binarySearch(alist, item_custo):
     return midpoint
 
 def insere(lista, item):
+	if len(lista) == 1:
+
+		if lista[0].custo<item.custo:
+			lista.append(item)
+		else:
+			lista.insert(0,item)
+
+		return lista
+
 	i = binarySearch(lista, item.custo)
+
+	
+	if (len(lista)-1)>i:
+		if item.custo>lista[i].custo:
+			i+=1
+	else:
+		lista.append(item)
+		return lista
+
 	lista.insert(i, item)
 	return lista
